@@ -5,12 +5,12 @@ const Koa = require('koa'),
 const server = new Koa(),
 	router = new Router();
 
-router.get('/user/:id', ctx => {
-	ctx.body = ctx.params.id;
+router.get('/user', ctx => {
+	ctx.body = ctx.request.body;
 });
 server
+	.use(require('koa-body')())
 	.use(router.allowedMethods())
-	.use(router.routes())
-	.use(require('koa-body')());
+	.use(router.routes());
 
 server.listen(3000);
