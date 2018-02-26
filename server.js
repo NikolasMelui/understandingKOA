@@ -5,8 +5,8 @@ const Koa = require('koa'),
 const server = new Koa(),
 	router = new Router();
 
-router.get('/user', ctx => {
-	ctx.body = 'Hello';
+router.get('/user/:id', ctx => {
+	ctx.body = ctx.params.id;
 });
 server
 	.use(router.allowedMethods())
